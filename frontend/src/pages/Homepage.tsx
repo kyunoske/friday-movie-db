@@ -19,8 +19,13 @@ function Homepage(props: HomepageProps) {
             <MovieList movies={props.movies} deleteMovie={props.deleteMovie}/>
 
             <Modal movie={props.movie} addMovie={props.addMovie}/>
-            <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
+            <button type="button"
+                    className="btn btn-primary"
+                    data-bs-toggle="modal"
+                    data-bs-target="#exampleModal"
+                    style={{width: "50%", textAlign: "center", display: "block"}}
+            >
+                Click me to add a movie!
             </button>
         </div>
     );

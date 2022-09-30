@@ -1,4 +1,4 @@
-.modal {
-    height: 600px;
-    width: 600px;
+.button-group {
+    display: flex;
+    justify-content: space-between;
 }
