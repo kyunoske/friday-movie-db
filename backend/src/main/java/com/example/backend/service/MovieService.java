@@ -24,4 +24,12 @@ public class MovieService {
     public Movie addMovie(Movie newMovie) {
         return movieRepo.addMovie(newMovie.getId(), newMovie);
     }
+
+    public Movie getMovieById(String id) {
+        return movieRepo.getMovieById(id);
+    }
+
+    public Movie deleteMovie(String id) {
+        return movieRepo.deleteMovie(id);
+    }
 }

@@ -21,4 +21,12 @@ public class MovieRepo {
         movies.put(id, newMovie);
         return newMovie;
     }
+
+    public Movie getMovieById(String id) {
+        return movies.get(id);
+    }
+
+    public Movie deleteMovie(String id) {
+        return movies.remove(id);
+    }
 }

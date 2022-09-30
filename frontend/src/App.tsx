@@ -7,15 +7,17 @@ import useMovie from "./hooks/useMovie";
 
 function App() {
 
-    const {movie, movies, getAllMovies, addNewMovie} = useMovie();
+    const {movie, movies, getAllMovies, addNewMovie, deleteMovie} = useMovie();
 
     return (
         <Router>
             <Routes>
                 <Route path="/" element={<Homepage
                     movie={movie}
-                    addMovie={addNewMovie}
                     movies={movies}
+                    addMovie={addNewMovie}
+                    deleteMovie={deleteMovie}
+
                 />}/>
             </Routes>
         </Router>

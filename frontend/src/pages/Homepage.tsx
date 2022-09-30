@@ -7,6 +7,7 @@ type HomepageProps = {
     movie: Movie;
     movies: Movie[];
     addMovie: (movie: Movie) => void;
+    deleteMovie: (id: string) => void;
 }
 
 function Homepage(props: HomepageProps) {
@@ -15,7 +16,7 @@ function Homepage(props: HomepageProps) {
 
     return (
         <div>
-            <MovieList movies={props.movies}/>
+            <MovieList movies={props.movies} deleteMovie={props.deleteMovie}/>
 
             <Modal movie={props.movie} addMovie={props.addMovie}/>
             <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">

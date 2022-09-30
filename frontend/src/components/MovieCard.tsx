@@ -4,9 +4,11 @@ import {Movie} from "../model/Movie";
 
 type MovieCardProps = {
     movie: Movie;
+    deleteMovie: (id: string) => void;
 }
 
 function MovieCard(props: MovieCardProps) {
+
     return (
         <div className="movie-container">
             <p><strong>{props.movie.title}</strong></p>
@@ -14,9 +16,9 @@ function MovieCard(props: MovieCardProps) {
             {/*<p>{props.movie.description}</p>*/}
             <p>{props.movie.category}</p>
             <div className="button-container">
-                {/*<button type="submit" className="btn btn-warning btn-md"*/}
-                {/*        onClick={() => props.deleteBook(props.book.isbn)}>delete book*/}
-                {/*</button>*/}
+                <button type="submit" className="btn btn-warning btn-md"
+                        onClick={() => props.deleteMovie(props.movie.id)}>delete book
+                </button>
             </div>
         </div>
     );

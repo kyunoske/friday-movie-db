@@ -23,8 +23,20 @@ public class MovieController {
         return movieService.getAllMovies();
     }
 
+    @GetMapping("/{id}")
+    public Movie getMovieById(@PathVariable String id) {
+        return movieService.getMovieById(id);
+    }
+
     @PostMapping
     public Movie addMovie(@RequestBody Movie newMovie) {
         return movieService.addMovie(newMovie);
     }
+
+    @DeleteMapping("/{id}")
+    public Movie deleteMovie(@PathVariable String id) {
+        return movieService.deleteMovie(id);
+    }
+
+
 }
