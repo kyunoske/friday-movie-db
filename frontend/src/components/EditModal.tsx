@@ -69,6 +69,10 @@ function EditModal(props: EditModalProps) {
             .then(() => getAllMovies())
 
 
+        setTitle("");
+        setDescription("");
+        setImage("");
+        setCategory("");
         // props.editMovie(id);
         console.log(updatedMovie);
 
