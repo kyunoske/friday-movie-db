@@ -3,5 +3,6 @@ export type Movie = {
     title: string;
     description: string;
     image: string;
+    bannerImage?: string;
     category: string;
 }

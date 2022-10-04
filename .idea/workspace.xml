@@ -6,8 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="91089480-0d37-4704-a1aa-7d96a5441a2f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/Modal.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Modal.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/controller/MovieController.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/controller/MovieController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/model/Movie.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/model/Movie.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/repo/MovieRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/repo/MovieRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/MovieService.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/example/backend/service/MovieService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/Modal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/Modal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MovieCard.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MovieCard.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MovieCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MovieCard.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MovieList.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MovieList.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/MovieList.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/MovieList.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useMovie.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/useMovie.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/model/Movie.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/model/Movie.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/pages/Homepage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/Homepage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -73,6 +87,12 @@
   <component name="RecentsManager">
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/components" />
+      <recent name="$PROJECT_DIR$/frontend/public/videos" />
+      <recent name="$PROJECT_DIR$/frontend/public/images" />
+      <recent name="$PROJECT_DIR$/frontend/src/pages" />
     </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="com.example.backend.controller" />
@@ -184,7 +204,7 @@
       <workItem from="1664528903575" duration="250000" />
       <workItem from="1664529164474" duration="356000" />
       <workItem from="1664529528638" duration="1631000" />
-      <workItem from="1664531546759" duration="20247000" />
+      <workItem from="1664531546759" duration="79675000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1664529412241</created>
@@ -221,7 +241,14 @@
       <option name="project" value="LOCAL" />
       <updated>1664552860813</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="change button text and css">
+      <created>1664554172687</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1664554172687</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -235,6 +262,7 @@
     <MESSAGE value="add backend getAllMovies and addMovie, added calls and files to frontend" />
     <MESSAGE value="add backend folders" />
     <MESSAGE value="fix delete call in backend and frontend" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix delete call in backend and frontend" />
+    <MESSAGE value="change button text and css" />
+    <option name="LAST_COMMIT_MESSAGE" value="change button text and css" />
   </component>
 </project>

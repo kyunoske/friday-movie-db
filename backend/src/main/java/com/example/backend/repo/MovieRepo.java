@@ -29,4 +29,9 @@ public class MovieRepo {
     public Movie deleteMovie(String id) {
         return movies.remove(id);
     }
+
+    public Movie editMovie(String id, Movie movie) {
+        movies.put(id, movie);
+        return movie;
+    }
 }

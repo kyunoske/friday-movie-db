@@ -11,11 +11,11 @@ type MovieListProps = {
 function MovieList(props: MovieListProps) {
 
     const [data, setData] = useState("")
-
+    const sorting = [...props.movies].sort((a, b) => a.title > b.title ? 1 : -1);
     return (
         <div>
             <div className="movie-list-container">
-                {props.movies.map((movie, index) =>
+                {sorting.map((movie, index) =>
                     <MovieCard movie={movie} key={index} deleteMovie={props.deleteMovie}/>
                 )}
             </div>

@@ -1,0 +1,40 @@
+h3 {
+    text-align: center;
+    padding-top: 5px;
+    color: #ffffff;
+}
+
+h5 {
+    text-align: center;
+    padding-top: 5px;
+    color: #ffffff;
+}
+
+p {
+    font-style: italic;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-right: 10px;
+    color: #ffffff;
+}
+
+.details-container {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    color: #ffffff;
+}
+
+.detail-header {
+    margin-top: 20px;
+}
+
+.image-container {
+    display: flex;
+}
+
+.description-details {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}

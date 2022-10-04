@@ -32,4 +32,9 @@ public class MovieService {
     public Movie deleteMovie(String id) {
         return movieRepo.deleteMovie(id);
     }
+
+    public Movie editMovie(String id, Movie movie) {
+        movieRepo.editMovie(id, movie);
+        return movie;
+    }
 }

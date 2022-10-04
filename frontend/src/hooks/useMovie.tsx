@@ -22,12 +22,22 @@ function UseMovie() {
             .then(getAllMovies)
     }
 
+    const getMovieById = (id: string) => {
+        axios.get(`/api/movie/${id}`)
+            .then(response => response.data);
+    }
+
     const deleteMovie = (id: string) => {
         axios.delete("/api/movie/" + id)
             .then(() => getAllMovies())
     }
 
-    return {movie, movies, getAllMovies, addNewMovie, deleteMovie};
+    const editMovie = (id: string) => {
+        axios.put(`/api/movie/${id}`, movie)
+            .then(getAllMovies)
+    }
+    
+    return {movie, movies, getAllMovies, addNewMovie, deleteMovie, getMovieById, editMovie};
 }
 
 export default UseMovie;
