@@ -19,7 +19,7 @@ function MovieCard(props: MovieCardProps) {
                 <Link to={"/movie/" + props.movie.id} style={{marginLeft: "21px", width: "75%"}}>
                     <button type="submit" className="btn btn-outline-info btn-md button-details">See details</button>
                 </Link>
-                <button type="submit" className="btn btn-warning btn-md button-delete"
+                <button type="submit" className="btn btn-outline-secondary btn-md button-delete"
                         onClick={() => props.deleteMovie(props.movie.id)}>
                     <i className="fa-solid fa-trash"></i>
                 </button>

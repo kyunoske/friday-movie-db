@@ -33,8 +33,8 @@ function Homepage(props: HomepageProps) {
                         display: "flex",
                         justifyContent: "center",
                         margin: "auto",
-                        marginBottom: "20px",
-                        marginTop: "20px"
+                        marginBottom: "55px",
+                        marginTop: "55px"
                     }}
             >
                 Click me to add a movie!
