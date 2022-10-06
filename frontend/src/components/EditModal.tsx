@@ -11,6 +11,11 @@ type EditModalProps = {
 }
 
 function EditModal(props: EditModalProps) {
+
+    useEffect(() => {
+        getAllMovies()
+    }, [])
+
     const {getAllMovies} = useMovie()
     const params = useParams();
     const id = params.id;

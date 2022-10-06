@@ -13,7 +13,7 @@ function MovieCard(props: MovieCardProps) {
     return (
         <div className="movie-container">
             <Link to={"/movie/" + props.movie.id}>
-                <img src={props.movie.image}/>
+                <img src={props.movie.image} style={{height: "162px", width: "100%"}}/>
             </Link>
             <div className="button-container">
                 <Link to={"/movie/" + props.movie.id} style={{marginLeft: "21px", width: "75%"}}>
