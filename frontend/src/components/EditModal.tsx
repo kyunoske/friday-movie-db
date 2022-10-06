@@ -7,16 +7,11 @@ import axios from "axios";
 type EditModalProps = {
     movie: Movie;
     movies: Movie[];
-    editMovie: (id: string) => void;
+    editMovie: (id: string, movie: Movie) => void;
 }
 
 function EditModal(props: EditModalProps) {
 
-    useEffect(() => {
-        getAllMovies()
-    }, [])
-
-    const {getAllMovies} = useMovie()
     const params = useParams();
     const id = params.id;
 
@@ -25,55 +20,39 @@ function EditModal(props: EditModalProps) {
 
     const [movie, setMovie] = useState(findMovie)
 
-    const [title, setTitle] = useState(findMovie?.title)
-    const [description, setDescription] = useState(findMovie?.description)
-    const [image, setImage] = useState(findMovie?.image)
-    const [bannerImage, setBannerImage] = useState("")
-    const [category, setCategory] = useState(findMovie?.category)
+    const [title, setTitle] = useState(findMovie ? findMovie.title : "")
+    const [description, setDescription] = useState(findMovie ? findMovie.description : "")
+    const [image, setImage] = useState(findMovie ? findMovie.image : "")
+    // const [bannerImage, setBannerImage] = useState("")
+    const [category, setCategory] = useState(findMovie ? findMovie.category : "")
     const [modal, setModal] = useState(true);
 
     if (id === undefined) {
         return (<>Movie not found with this id!</>)
     }
 
-
     if (findMovie === undefined) {
         return (<>Sorry no movie found!</>)
     }
 
-    const randomId: number = Math.floor(Math.random() * 100000) + 1;
-
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
 
-        // let updatedMovie: Movie = {
-        //     id: props.movie.id,
-        //     title: props.movie.title,
-        //     description: props.movie.description,
-        //     image: props.movie.image,
-        //     bannerImage: props.movie.bannerImage,
-        //     category: props.movie.category
-        // }
-
         let updatedMovie: Movie = {
             id,
-            // @ts-ignore
             title,
-            // @ts-ignore
             description,
-            // @ts-ignore
             image,
-            bannerImage,
-            // @ts-ignore
+            // bannerImage,
             category
         }
 
         setMovie(updatedMovie);
 
-        axios.put(`/api/movie/${id}`, updatedMovie)
-            .then(() => getAllMovies())
-        
-        // props.editMovie(id);
+        // axios.put(`/api/movie/${id}`, updatedMovie)
+        //     .then(() => getAllMovies())
+
+        props.editMovie(id, updatedMovie);
         console.log(updatedMovie);
 
     }
