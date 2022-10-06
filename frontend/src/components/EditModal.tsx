@@ -72,12 +72,7 @@ function EditModal(props: EditModalProps) {
 
         axios.put(`/api/movie/${id}`, updatedMovie)
             .then(() => getAllMovies())
-
-
-        setTitle("");
-        setDescription("");
-        setImage("");
-        setCategory("");
+        
         // props.editMovie(id);
         console.log(updatedMovie);
 
