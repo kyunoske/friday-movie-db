@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="91089480-0d37-4704-a1aa-7d96a5441a2f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/EditModal.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/EditModal.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/example/backend/controller/MovieControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/backend/controller/MovieControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/example/backend/service/MovieServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/backend/service/MovieServiceTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,17 +121,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MovieControllerTest,getAllMovies and 1 more" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <option name="TEST_OBJECT" value="pattern" />
-      <patterns>
-        <pattern testClass="com.example.backend.controller.MovieControllerTest,getAllMovies" />
-        <pattern testClass="com.example.backend.controller.MovieControllerTest,addMovie" />
-      </patterns>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="MovieControllerTest.getAllMovies" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
@@ -146,7 +137,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MovieServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MovieServiceTest.addMovie" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
         <pattern>
@@ -156,7 +147,24 @@
       </extension>
       <option name="PACKAGE_NAME" value="com.example.backend.service" />
       <option name="MAIN_CLASS_NAME" value="com.example.backend.service.MovieServiceTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="METHOD_NAME" value="addMovie" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MovieServiceTest.getAllMovies" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.backend.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.backend.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.backend.service.MovieServiceTest" />
+      <option name="METHOD_NAME" value="getAllMovies" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -173,11 +181,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.MovieServiceTest" />
-        <item itemvalue="JUnit.MovieControllerTest,getAllMovies and 1 more" />
-        <item itemvalue="JUnit.MovieControllerTest" />
         <item itemvalue="JUnit.MovieControllerTest.addMovie" />
         <item itemvalue="JUnit.MovieControllerTest.getAllMovies" />
+        <item itemvalue="JUnit.MovieControllerTest" />
+        <item itemvalue="JUnit.MovieServiceTest.addMovie" />
+        <item itemvalue="JUnit.MovieServiceTest.getAllMovies" />
       </list>
     </recent_temporary>
   </component>
@@ -192,7 +200,7 @@
       <workItem from="1664528903575" duration="250000" />
       <workItem from="1664529164474" duration="356000" />
       <workItem from="1664529528638" duration="1631000" />
-      <workItem from="1664531546759" duration="110089000" />
+      <workItem from="1664531546759" duration="114516000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1664529412241</created>
@@ -264,7 +272,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665044770302</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="remove useless code in edit modal">
+      <created>1665051037755</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1665051037755</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,6 +298,7 @@
     <MESSAGE value="add set to clear form" />
     <MESSAGE value="change button color" />
     <MESSAGE value="add mongoDB to project" />
-    <option name="LAST_COMMIT_MESSAGE" value="add mongoDB to project" />
+    <MESSAGE value="remove useless code in edit modal" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove useless code in edit modal" />
   </component>
 </project>

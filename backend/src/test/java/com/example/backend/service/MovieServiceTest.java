@@ -11,48 +11,42 @@ import static org.mockito.Mockito.*;
 
 class MovieServiceTest {
 
-//    private final MovieRepo movieRepo = mock(MovieRepo.class);
-//    private final IdService idService = mock(IdService.class);
-//    private final MovieService movieService = new MovieService(movieRepo);
+    private final MovieRepo movieRepo = mock(MovieRepo.class);
+    private final IdService idService = mock(IdService.class);
+    private final MovieService movieService = new MovieService(movieRepo, idService);
 
     @Test
     void getAllMovies() {
-//        //Given
-//        when(movieRepo.getAllMovies()).thenReturn(List.of(new Movie(
-//                "1",
-//                "Kid",
-//                "A good movie",
-//                "https://www.cinematerial.com/media/box-office/499549.jpg",
-//                "action")));
-//
-//        //When
-//        List<Movie> actual = movieService.getAllMovies();
-//
-//        //Then
-//        List<Movie> expected = List.of(new Movie("1",
-//                "Kid",
-//                "A good movie",
-//                "https://www.cinematerial.com/media/box-office/499549.jpg",
-//                "action"));
-//        verify(movieRepo).getAllMovies();
-//        assertEquals(expected, actual);
+        //Given
+        when(movieRepo.findAll()).thenReturn(List.of(
+                new Movie("1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "", "action")));
+
+        //When
+        List<Movie> actual = movieService.getAllMovies();
+
+        //Then
+        List<Movie> expected = List.of(
+                new Movie("1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "", "action"));
+        verify(movieRepo).findAll();
+        assertEquals(expected, actual);
     }
 
     @Test
     void addMovie() {
-//        //Given
-//        Movie movie = new Movie("1",
-//                "Kid",
-//                "A good movie",
-//                "https://www.cinematerial.com/media/box-office/499549.jpg",
-//                "action");
-//        when(movieRepo.addMovie("1", movie)).thenReturn(movie);
-//
-//        //When
-//        Movie actual = movieService.addMovie(movie);
-//
-//        //Then
-//        verify(movieRepo).addMovie("1", movie);
-//        assertEquals(movie, actual);
+        //Given
+        Movie movie = new Movie("1",
+                "Kid",
+                "A good movie",
+                "https://www.cinematerial.com/media/box-office/499549.jpg",
+                "",
+                "action");
+        when(movieRepo.save(movie)).thenReturn(movie);
+
+        //When
+        Movie actual = movieService.addMovie(movie);
+
+        //Then
+        verify(movieRepo).save(movie);
+        assertEquals(movie, actual);
     }
 }

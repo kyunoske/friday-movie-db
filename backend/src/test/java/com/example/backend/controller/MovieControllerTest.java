@@ -2,7 +2,9 @@ package com.example.backend.controller;
 
 import com.example.backend.model.Movie;
 import com.example.backend.repo.MovieRepo;
+import com.example.backend.service.IdService;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ class MovieControllerTest {
     @Autowired
     private MovieRepo movieRepo;
 
+    @MockBean
+    private IdService idService;
+
     @DirtiesContext
     @Test
     void getAllMovies() throws Exception {
@@ -31,14 +36,15 @@ class MovieControllerTest {
 //                "Kid",
 //                "A good movie",
 //                "https://www.cinematerial.com/media/box-office/499549.jpg",
+//                "",
 //                "action");
-//        movieRepo.addMovie("1", movie1);
+//        movieRepo.save(movie1);
 //
 //        //When & Then
 //        mockMvc.perform(get("/api/movie"))
 //                .andExpect(status().is(200))
 //                .andExpect(content().string("""
-//                        [{"1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "action"}]
+//                        [{"1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", , "action"}]
 //                        """
 //                ));
     }
