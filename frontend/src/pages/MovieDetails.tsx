@@ -6,7 +6,7 @@ import EditModal from "../components/EditModal";
 
 type MovieDetailsProps = {
     movies: Movie[]
-    editMovie: (id: string) => void;
+    editMovie: (id: string, movie: Movie) => void;
 }
 
 function MovieDetails(props: MovieDetailsProps) {
