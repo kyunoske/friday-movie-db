@@ -87,7 +87,7 @@
       <recent name="com.example.backend.service" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.BackendApplication">
+  <component name="RunManager" selected="JUnit.MovieServiceTest">
     <configuration name="BackendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
@@ -99,22 +99,6 @@
       <option name="PACKAGE_NAME" value="com.example.backend" />
       <option name="MAIN_CLASS_NAME" value="com.example.backend.BackendApplicationTests" />
       <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BackendApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.backend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.backend" />
-      <option name="MAIN_CLASS_NAME" value="com.example.backend.BackendApplicationTests" />
-      <option name="METHOD_NAME" value="contextLoads" />
-      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -166,6 +150,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MovieServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.backend.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.backend.service" />
+      <option name="MAIN_CLASS_NAME" value="com.example.backend.service.MovieServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Debug Application" type="JavascriptDebugType" uri="http://localhost:3000">
       <method v="2" />
     </configuration>
@@ -178,11 +177,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MovieServiceTest" />
         <item itemvalue="JUnit.BackendApplicationTests" />
         <item itemvalue="JUnit.MovieControllerTest" />
         <item itemvalue="JUnit.MovieControllerTest.addMovie" />
         <item itemvalue="JUnit.MovieControllerTest.getAllMovies" />
-        <item itemvalue="JUnit.BackendApplicationTests.contextLoads" />
       </list>
     </recent_temporary>
   </component>
