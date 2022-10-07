@@ -4,6 +4,8 @@ import com.example.backend.model.Movie;
 import com.example.backend.repo.MovieRepo;
 import com.example.backend.service.IdService;
 import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -17,6 +19,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@SpringBootTest
+@AutoConfigureMockMvc
 class MovieControllerTest {
 
     @Autowired
@@ -31,37 +35,41 @@ class MovieControllerTest {
     @DirtiesContext
     @Test
     void getAllMovies() throws Exception {
-//        //Given
-//        Movie movie1 = new Movie("1",
-//                "Kid",
-//                "A good movie",
-//                "https://www.cinematerial.com/media/box-office/499549.jpg",
-//                "",
-//                "action");
-//        movieRepo.save(movie1);
-//
-//        //When & Then
-//        mockMvc.perform(get("/api/movie"))
-//                .andExpect(status().is(200))
-//                .andExpect(content().string("""
-//                        [{"1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", , "action"}]
-//                        """
-//                ));
+        //Given
+        Movie movie1 = new Movie("1",
+                "Kid",
+                "A good movie",
+                "https://www.cinematerial.com/media/box-office/499549.jpg",
+                "",
+                "action");
+        movieRepo.save(movie1);
+
+        //When & Then
+        mockMvc.perform(get("/api/movie"))
+                .andExpect(status().is(200))
+                .andExpect(content().string("""
+                        [{"1", 
+                        "Kid", 
+                        "A good movie", 
+                        "https://www.cinematerial.com/media/box-office/499549.jpg", 
+                        "", 
+                        "action"}]
+                        """
+                ));
     }
 
     @Test
     void addMovie() throws Exception {
-//        //Given
-//        //When & Then
-//        mockMvc.perform(
-//                put("/api/movie/1")
-//                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
-//                        .content("""
-//                                {"1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "action"}
-//                                """))
-//                .andExpect(status().is(200))
-//                .andExpect(content().string("""
-//                        {"1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "action"}
-//                        """));
+        //Given
+        //When & Then
+        mockMvc.perform(
+                        put("/api/movie/1").header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+                                .content("""
+                                        {"1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "action"}
+                                        """))
+                .andExpect(status().is(200))
+                .andExpect(content().string("""
+                        {"1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "action"}
+                        """));
     }
 }
