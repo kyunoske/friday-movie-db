@@ -5,7 +5,7 @@ name: Deploy to Heroku
 on:
   push:
     branches:
-      -feature-movie
+      - feature-movie
 
 jobs:
   build-frontend:
