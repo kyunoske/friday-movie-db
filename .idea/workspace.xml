@@ -90,7 +90,7 @@
       <recent name="com.example.backend.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.BackendApplicationTests.contextLoads">
+  <component name="RunManager" selected="Spring Boot.BackendApplication">
     <configuration name="BackendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
