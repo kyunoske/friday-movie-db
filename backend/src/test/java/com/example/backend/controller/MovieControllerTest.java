@@ -50,7 +50,7 @@ class MovieControllerTest {
 //                .andExpect(content().string("""
 //                        [{"id":"1","title":"Kid","description":"A good movie","image":"https://www.cinematerial.com/media/box-office/499549.jpg","bannerImage":"","category":"action"}]
 //                        """
-//                //
+//
 //                ));
     }
 
