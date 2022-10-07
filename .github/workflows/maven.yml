@@ -20,7 +20,7 @@ on:
             cd frontend
             npm install
             npm run build
-        - uses: action/upload-artifact@v2
+        - uses: actions/upload-artifact@v2
           with:
             name: frontend-build
             path: frontend/build/
@@ -43,7 +43,7 @@ on:
         - uses: actions/upload-artifact@v2
           with:
             name: backend-build
-            path: backend/target/etstssts.jar
+            path: backend/target/friday-movie-task.jar
 
     deploy:
       runs-on: ubuntu-latest
