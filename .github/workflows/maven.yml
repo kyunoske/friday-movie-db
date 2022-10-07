@@ -7,7 +7,7 @@ on:
     branches:
       -test
 
-job:
+jobs:
   build-frontend:
     runs-on: ubuntu-latest
     steps:
