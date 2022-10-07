@@ -6,7 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="91089480-0d37-4704-a1aa-7d96a5441a2f" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -199,7 +198,7 @@
       <workItem from="1664529164474" duration="356000" />
       <workItem from="1664529528638" duration="1631000" />
       <workItem from="1664531546759" duration="138716000" />
-      <workItem from="1665149713846" duration="3629000" />
+      <workItem from="1665149713846" duration="3978000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1664529412241</created>
@@ -327,7 +326,21 @@
       <option name="project" value="LOCAL" />
       <updated>1665152533040</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="add working maven update from Dominic">
+      <created>1665153501134</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1665153501134</updated>
+    </task>
+    <task id="LOCAL-00020" summary="add working maven update from Dominic">
+      <created>1665153722304</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1665153722304</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -361,6 +374,7 @@
     <MESSAGE value="fix tests in service" />
     <MESSAGE value="fix edit call" />
     <MESSAGE value="add stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="add stuff" />
+    <MESSAGE value="add working maven update from Dominic" />
+    <option name="LAST_COMMIT_MESSAGE" value="add working maven update from Dominic" />
   </component>
 </project>
