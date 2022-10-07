@@ -1,0 +1,340 @@
+Index: frontend/src/hooks/useMovie.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React, {useEffect, useState} from 'react';\nimport {Movie} from \"../model/Movie\";\nimport axios from \"axios\";\n\nfunction UseMovie() {\n\n    const [movies, setMovies] = useState([]);\n    let movie!: Movie;\n\n    useEffect(() => {\n        getAllMovies()\n    }, [])\n\n    const getAllMovies = () => {\n        axios.get(\"/api/movie\")\n            .then((response) => response.data)\n            .then((movies) => setMovies(movies))\n    }\n\n    const addNewMovie = (movie: Movie) => {\n        axios.post(\"/api/movie\", movie)\n            .then(getAllMovies)\n    }\n\n    const getMovieById = (id: string) => {\n        axios.get(`/api/movie/${id}`)\n            .then(response => response.data);\n    }\n\n    const deleteMovie = (id: string) => {\n        axios.delete(\"/api/movie/\" + id)\n            .then(() => getAllMovies())\n    }\n\n    const editMovie = (id: string) => {\n        axios.put(`/api/movie/${id}`, movie)\n            .then(getAllMovies)\n    }\n    \n    return {movie, movies, getAllMovies, addNewMovie, deleteMovie, getMovieById, editMovie};\n}\n\nexport default UseMovie;
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/hooks/useMovie.tsx b/frontend/src/hooks/useMovie.tsx
+--- a/frontend/src/hooks/useMovie.tsx	(revision 0bd2f4f22fde946a08ac9afcf19cef098a7c93e9)
++++ b/frontend/src/hooks/useMovie.tsx	(date 1665068719904)
+@@ -5,7 +5,6 @@
+ function UseMovie() {
+ 
+     const [movies, setMovies] = useState([]);
+-    let movie!: Movie;
+ 
+     useEffect(() => {
+         getAllMovies()
+@@ -32,12 +31,12 @@
+             .then(() => getAllMovies())
+     }
+ 
+-    const editMovie = (id: string) => {
++    const editMovie = (id: string, movie: Movie) => {
+         axios.put(`/api/movie/${id}`, movie)
+             .then(getAllMovies)
+     }
+-    
+-    return {movie, movies, getAllMovies, addNewMovie, deleteMovie, getMovieById, editMovie};
++
++    return {movies, getAllMovies, addNewMovie, deleteMovie, getMovieById, editMovie};
+ }
+ 
+ export default UseMovie;
+\ No newline at end of file
+Index: backend/src/test/java/com/example/backend/controller/MovieControllerTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/backend/src/test/java/com/example/backend/controller/MovieControllerTest.java b/backend/src/test/java/com/example/backend/controller/MovieControllerTest.java
+deleted file mode 100644
+--- a/backend/src/test/java/com/example/backend/controller/MovieControllerTest.java	(revision 0bd2f4f22fde946a08ac9afcf19cef098a7c93e9)
++++ /dev/null	(revision 0bd2f4f22fde946a08ac9afcf19cef098a7c93e9)
+@@ -1,67 +0,0 @@
+-package com.example.backend.controller;
+-
+-import com.example.backend.model.Movie;
+-import com.example.backend.repo.MovieRepo;
+-import com.example.backend.service.IdService;
+-import org.junit.jupiter.api.Test;
+-import org.springframework.boot.test.mock.mockito.MockBean;
+-import org.springframework.http.HttpHeaders;
+-import org.springframework.http.MediaType;
+-import org.springframework.beans.factory.annotation.Autowired;
+-import org.springframework.test.annotation.DirtiesContext;
+-import org.springframework.test.web.servlet.MockMvc;
+-
+-import static org.junit.jupiter.api.Assertions.*;
+-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
+-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+-
+-class MovieControllerTest {
+-
+-    @Autowired
+-    MockMvc mockMvc;
+-
+-    @Autowired
+-    private MovieRepo movieRepo;
+-
+-    @MockBean
+-    private IdService idService;
+-
+-    @DirtiesContext
+-    @Test
+-    void getAllMovies() throws Exception {
+-//        //Given
+-//        Movie movie1 = new Movie("1",
+-//                "Kid",
+-//                "A good movie",
+-//                "https://www.cinematerial.com/media/box-office/499549.jpg",
+-//                "",
+-//                "action");
+-//        movieRepo.save(movie1);
+-//
+-//        //When & Then
+-//        mockMvc.perform(get("/api/movie"))
+-//                .andExpect(status().is(200))
+-//                .andExpect(content().string("""
+-//                        [{"1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", , "action"}]
+-//                        """
+-//                ));
+-    }
+-
+-    @Test
+-    void addMovie() throws Exception {
+-//        //Given
+-//        //When & Then
+-//        mockMvc.perform(
+-//                put("/api/movie/1")
+-//                        .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
+-//                        .content("""
+-//                                {"1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "action"}
+-//                                """))
+-//                .andExpect(status().is(200))
+-//                .andExpect(content().string("""
+-//                        {"1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "action"}
+-//                        """));
+-    }
+-}
+\ No newline at end of file
+Index: frontend/src/App.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import React from 'react';\nimport './App.css';\nimport {BrowserRouter as Router, Route, Routes} from \"react-router-dom\";\nimport Homepage from \"./pages/Homepage\";\nimport useMovie from \"./hooks/useMovie\";\nimport MovieDetails from \"./pages/MovieDetails\";\n\nfunction App() {\n\n    const {\n        movie,\n        movies,\n        getAllMovies,\n        addNewMovie,\n        deleteMovie,\n        getMovieById,\n        editMovie\n    } = useMovie();\n\n    return (\n        <Router>\n            <Routes>\n                <Route path=\"/\" element={<Homepage\n                    movie={movie}\n                    movies={movies}\n                    addMovie={addNewMovie}\n                    deleteMovie={deleteMovie}\n\n                />}/>\n                <Route path=\"/movie/:id\" element={<MovieDetails editMovie={editMovie} movies={movies}/>}/>\n            </Routes>\n        </Router>\n    );\n}\n\nexport default App;\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/frontend/src/App.tsx b/frontend/src/App.tsx
+--- a/frontend/src/App.tsx	(revision 0bd2f4f22fde946a08ac9afcf19cef098a7c93e9)
++++ b/frontend/src/App.tsx	(date 1665069032483)
+@@ -4,11 +4,11 @@
+ import Homepage from "./pages/Homepage";
+ import useMovie from "./hooks/useMovie";
+ import MovieDetails from "./pages/MovieDetails";
++import {Movie} from "./model/Movie";
+ 
+ function App() {
+-
++    let movie!: Movie;
+     const {
+-        movie,
+         movies,
+         getAllMovies,
+         addNewMovie,
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"91089480-0d37-4704-a1aa-7d96a5441a2f\" name=\"Changes\" comment=\"\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/main/resources/application.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/main/resources/application.properties\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/test/java/com/example/backend/controller/MovieControllerTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/test/java/com/example/backend/controller/MovieControllerTest.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/backend/src/test/java/com/example/backend/service/MovieServiceTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/backend/src/test/java/com/example/backend/service/MovieServiceTest.java\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n        <option value=\"JUnit5 Test Class\" />\n        <option value=\"TypeScript File\" />\n        <option value=\"TypeScript JSX File\" />\n        <option value=\"CSS File\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"FormatOnSaveOptions\">\n    <option name=\"myRunOnSave\" value=\"true\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_BRANCH_BY_REPOSITORY\">\n      <map>\n        <entry key=\"$PROJECT_DIR$\" value=\"master\" />\n      </map>\n    </option>\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n    <option name=\"ROOT_SYNC\" value=\"SYNC\" />\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectId\" id=\"2FTvU25q6W000AyYf9Y2k2NQ2Hx\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"RequestMappingsPanelOrder0\": \"0\",\n    \"RequestMappingsPanelOrder1\": \"1\",\n    \"RequestMappingsPanelWidth0\": \"75\",\n    \"RequestMappingsPanelWidth1\": \"75\",\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"WebServerToolWindowFactoryState\": \"false\",\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary\": \"JUnit5\",\n    \"com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5\": \"\",\n    \"jdk.selected.JAVA_MODULE\": \"18\",\n    \"list.type.of.created.stylesheet\": \"CSS\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"nodejs_interpreter_path\": \"node\",\n    \"nodejs_package_manager_path\": \"npm\",\n    \"project.structure.last.edited\": \"Modules\",\n    \"project.structure.proportion\": \"0.15\",\n    \"project.structure.side.proportion\": \"0.2\",\n    \"rearrange.code.on.save\": \"true\",\n    \"settings.editor.selected.configurable\": \"reference.settings.project.maven.repository.indices\",\n    \"spring.configuration.checksum\": \"b43fdd98b1fd705ae4c3a10cf25aad8a\",\n    \"ts.external.directory.path\": \"/Users/ryanshade/IdeaProjects/friday-movie-task/frontend/node_modules/typescript/lib\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CreateTestDialog.Recents.Supers\">\n      <recent name=\"\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/frontend/src/components\" />\n      <recent name=\"$PROJECT_DIR$/frontend/public/videos\" />\n      <recent name=\"$PROJECT_DIR$/frontend/public/images\" />\n      <recent name=\"$PROJECT_DIR$/frontend/src/pages\" />\n    </key>\n    <key name=\"CreateTestDialog.RecentsKey\">\n      <recent name=\"com.example.backend.controller\" />\n      <recent name=\"com.example.backend.service\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"Spring Boot.BackendApplication\">\n    <configuration name=\"MovieControllerTest\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"backend\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.example.backend.controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"com.example.backend.controller\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.backend.controller.MovieControllerTest\" />\n      <option name=\"TEST_OBJECT\" value=\"class\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"MovieControllerTest.addMovie\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"backend\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.example.backend.controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"com.example.backend.controller\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.backend.controller.MovieControllerTest\" />\n      <option name=\"METHOD_NAME\" value=\"addMovie\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"MovieControllerTest.getAllMovies\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"backend\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.example.backend.controller.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"com.example.backend.controller\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.backend.controller.MovieControllerTest\" />\n      <option name=\"METHOD_NAME\" value=\"getAllMovies\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"MovieServiceTest.addMovie\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"backend\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.example.backend.service.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"com.example.backend.service\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.backend.service.MovieServiceTest\" />\n      <option name=\"METHOD_NAME\" value=\"addMovie\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"MovieServiceTest.getAllMovies\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"backend\" />\n      <extension name=\"coverage\">\n        <pattern>\n          <option name=\"PATTERN\" value=\"com.example.backend.service.*\" />\n          <option name=\"ENABLED\" value=\"true\" />\n        </pattern>\n      </extension>\n      <option name=\"PACKAGE_NAME\" value=\"com.example.backend.service\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"com.example.backend.service.MovieServiceTest\" />\n      <option name=\"METHOD_NAME\" value=\"getAllMovies\" />\n      <option name=\"TEST_OBJECT\" value=\"method\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"Debug Application\" type=\"JavascriptDebugType\" uri=\"http://localhost:3000\">\n      <method v=\"2\" />\n    </configuration>\n    <configuration name=\"BackendApplication\" type=\"SpringBootApplicationConfigurationType\" factoryName=\"Spring Boot\">\n      <module name=\"backend\" />\n      <option name=\"SPRING_BOOT_MAIN_CLASS\" value=\"com.example.backend.BackendApplication\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"JUnit.MovieControllerTest.addMovie\" />\n        <item itemvalue=\"JUnit.MovieControllerTest.getAllMovies\" />\n        <item itemvalue=\"JUnit.MovieControllerTest\" />\n        <item itemvalue=\"JUnit.MovieServiceTest.addMovie\" />\n        <item itemvalue=\"JUnit.MovieServiceTest.getAllMovies\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"91089480-0d37-4704-a1aa-7d96a5441a2f\" name=\"Changes\" comment=\"\" />\n      <created>1664528902130</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1664528902130</updated>\n      <workItem from=\"1664528903575\" duration=\"250000\" />\n      <workItem from=\"1664529164474\" duration=\"356000\" />\n      <workItem from=\"1664529528638\" duration=\"1631000\" />\n      <workItem from=\"1664531546759\" duration=\"114516000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"initial commit\">\n      <created>1664529412241</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1664529412241</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"initial commit\">\n      <created>1664529610568</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1664529610568</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"add backend getAllMovies and addMovie, added calls and files to frontend\">\n      <created>1664549578417</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1664549578418</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"add backend folders\">\n      <created>1664549632690</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1664549632690</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"fix delete call in backend and frontend\">\n      <created>1664552860813</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1664552860813</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"change button text and css\">\n      <created>1664554172687</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1664554172687</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"add too many things\">\n      <created>1664864893702</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1664864893702</updated>\n    </task>\n    <task id=\"LOCAL-00008\" summary=\"add set to clear form\">\n      <created>1664867756829</created>\n      <option name=\"number\" value=\"00008\" />\n      <option name=\"presentableId\" value=\"LOCAL-00008\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1664867756829</updated>\n    </task>\n    <task id=\"LOCAL-00009\" summary=\"change button color\">\n      <created>1664870108192</created>\n      <option name=\"number\" value=\"00009\" />\n      <option name=\"presentableId\" value=\"LOCAL-00009\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1664870108192</updated>\n    </task>\n    <task id=\"LOCAL-00010\" summary=\"add mongoDB to project\">\n      <created>1665044770302</created>\n      <option name=\"number\" value=\"00010\" />\n      <option name=\"presentableId\" value=\"LOCAL-00010\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1665044770302</updated>\n    </task>\n    <task id=\"LOCAL-00011\" summary=\"remove useless code in edit modal\">\n      <created>1665051037755</created>\n      <option name=\"number\" value=\"00011\" />\n      <option name=\"presentableId\" value=\"LOCAL-00011\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1665051037755</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"12\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <ignored-roots>\n      <path value=\"$PROJECT_DIR$/backend\" />\n    </ignored-roots>\n    <MESSAGE value=\"initial commit\" />\n    <MESSAGE value=\"add backend getAllMovies and addMovie, added calls and files to frontend\" />\n    <MESSAGE value=\"add backend folders\" />\n    <MESSAGE value=\"fix delete call in backend and frontend\" />\n    <MESSAGE value=\"change button text and css\" />\n    <MESSAGE value=\"add too many things\" />\n    <MESSAGE value=\"add set to clear form\" />\n    <MESSAGE value=\"change button color\" />\n    <MESSAGE value=\"add mongoDB to project\" />\n    <MESSAGE value=\"remove useless code in edit modal\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"remove useless code in edit modal\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 0bd2f4f22fde946a08ac9afcf19cef098a7c93e9)
++++ b/.idea/workspace.xml	(date 1665134935754)
+@@ -6,9 +6,10 @@
+   <component name="ChangeListManager">
+     <list default="true" id="91089480-0d37-4704-a1aa-7d96a5441a2f" name="Changes" comment="">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/resources/application.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/example/backend/controller/MovieControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/backend/controller/MovieControllerTest.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/example/backend/service/MovieServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/test/java/com/example/backend/service/MovieServiceTest.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/backend/src/test/java/com/example/backend/controller/MovieControllerTest.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/frontend/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/App.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/frontend/src/hooks/useMovie.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/hooks/useMovie.tsx" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/frontend/src/pages/MovieDetails.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/pages/MovieDetails.tsx" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -19,10 +20,10 @@
+     <option name="RECENT_TEMPLATES">
+       <list>
+         <option value="Class" />
+-        <option value="JUnit5 Test Class" />
+         <option value="TypeScript File" />
++        <option value="CSS File" />
+         <option value="TypeScript JSX File" />
+-        <option value="CSS File" />
++        <option value="JUnit5 Test Class" />
+       </list>
+     </option>
+   </component>
+@@ -69,7 +70,7 @@
+     "project.structure.proportion": "0.15",
+     "project.structure.side.proportion": "0.2",
+     "rearrange.code.on.save": "true",
+-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices",
++    "settings.editor.selected.configurable": "preferences.pluginManager",
+     "spring.configuration.checksum": "b43fdd98b1fd705ae4c3a10cf25aad8a",
+     "ts.external.directory.path": "/Users/ryanshade/IdeaProjects/friday-movie-task/frontend/node_modules/typescript/lib"
+   }
+@@ -89,39 +90,39 @@
+       <recent name="com.example.backend.service" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="Spring Boot.BackendApplication">
+-    <configuration name="MovieControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++  <component name="RunManager" selected="JUnit.BackendApplicationTests">
++    <configuration name="BackendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="backend" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="com.example.backend.controller.*" />
++          <option name="PATTERN" value="com.example.backend.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+-      <option name="PACKAGE_NAME" value="com.example.backend.controller" />
+-      <option name="MAIN_CLASS_NAME" value="com.example.backend.controller.MovieControllerTest" />
++      <option name="PACKAGE_NAME" value="com.example.backend" />
++      <option name="MAIN_CLASS_NAME" value="com.example.backend.BackendApplicationTests" />
+       <option name="TEST_OBJECT" value="class" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="MovieControllerTest.addMovie" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="BackendApplicationTests.contextLoads" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="backend" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="com.example.backend.controller.*" />
++          <option name="PATTERN" value="com.example.backend.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+-      <option name="PACKAGE_NAME" value="com.example.backend.controller" />
+-      <option name="MAIN_CLASS_NAME" value="com.example.backend.controller.MovieControllerTest" />
+-      <option name="METHOD_NAME" value="addMovie" />
++      <option name="PACKAGE_NAME" value="com.example.backend" />
++      <option name="MAIN_CLASS_NAME" value="com.example.backend.BackendApplicationTests" />
++      <option name="METHOD_NAME" value="contextLoads" />
+       <option name="TEST_OBJECT" value="method" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="MovieControllerTest.getAllMovies" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="MovieControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="backend" />
+       <extension name="coverage">
+         <pattern>
+@@ -131,29 +132,28 @@
+       </extension>
+       <option name="PACKAGE_NAME" value="com.example.backend.controller" />
+       <option name="MAIN_CLASS_NAME" value="com.example.backend.controller.MovieControllerTest" />
+-      <option name="METHOD_NAME" value="getAllMovies" />
+-      <option name="TEST_OBJECT" value="method" />
++      <option name="TEST_OBJECT" value="class" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="MovieServiceTest.addMovie" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="MovieControllerTest.getAllMovies" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="backend" />
+       <extension name="coverage">
+         <pattern>
+-          <option name="PATTERN" value="com.example.backend.service.*" />
++          <option name="PATTERN" value="com.example.backend.controller.*" />
+           <option name="ENABLED" value="true" />
+         </pattern>
+       </extension>
+-      <option name="PACKAGE_NAME" value="com.example.backend.service" />
+-      <option name="MAIN_CLASS_NAME" value="com.example.backend.service.MovieServiceTest" />
+-      <option name="METHOD_NAME" value="addMovie" />
++      <option name="PACKAGE_NAME" value="com.example.backend.controller" />
++      <option name="MAIN_CLASS_NAME" value="com.example.backend.controller.MovieControllerTest" />
++      <option name="METHOD_NAME" value="getAllMovies" />
+       <option name="TEST_OBJECT" value="method" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="MovieServiceTest.getAllMovies" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
++    <configuration name="MovieServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+       <module name="backend" />
+       <extension name="coverage">
+         <pattern>
+@@ -163,8 +163,7 @@
+       </extension>
+       <option name="PACKAGE_NAME" value="com.example.backend.service" />
+       <option name="MAIN_CLASS_NAME" value="com.example.backend.service.MovieServiceTest" />
+-      <option name="METHOD_NAME" value="getAllMovies" />
+-      <option name="TEST_OBJECT" value="method" />
++      <option name="TEST_OBJECT" value="class" />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+@@ -181,11 +180,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="JUnit.MovieControllerTest.addMovie" />
+-        <item itemvalue="JUnit.MovieControllerTest.getAllMovies" />
++        <item itemvalue="JUnit.BackendApplicationTests" />
++        <item itemvalue="JUnit.BackendApplicationTests.contextLoads" />
++        <item itemvalue="JUnit.MovieServiceTest" />
+         <item itemvalue="JUnit.MovieControllerTest" />
+-        <item itemvalue="JUnit.MovieServiceTest.addMovie" />
+-        <item itemvalue="JUnit.MovieServiceTest.getAllMovies" />
++        <item itemvalue="JUnit.MovieControllerTest.getAllMovies" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -200,7 +199,7 @@
+       <workItem from="1664528903575" duration="250000" />
+       <workItem from="1664529164474" duration="356000" />
+       <workItem from="1664529528638" duration="1631000" />
+-      <workItem from="1664531546759" duration="114516000" />
++      <workItem from="1664531546759" duration="129316000" />
+     </task>
+     <task id="LOCAL-00001" summary="initial commit">
+       <created>1664529412241</created>
+@@ -279,7 +278,21 @@
+       <option name="project" value="LOCAL" />
+       <updated>1665051037755</updated>
+     </task>
+-    <option name="localTasksCounter" value="12" />
++    <task id="LOCAL-00012" summary="fix tests in service">
++      <created>1665060638534</created>
++      <option name="number" value="00012" />
++      <option name="presentableId" value="LOCAL-00012" />
++      <option name="project" value="LOCAL" />
++      <updated>1665060638534</updated>
++    </task>
++    <task id="LOCAL-00013" summary="fix edit call">
++      <created>1665071149210</created>
++      <option name="number" value="00013" />
++      <option name="presentableId" value="LOCAL-00013" />
++      <option name="project" value="LOCAL" />
++      <updated>1665071149210</updated>
++    </task>
++    <option name="localTasksCounter" value="14" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -299,6 +312,8 @@
+     <MESSAGE value="change button color" />
+     <MESSAGE value="add mongoDB to project" />
+     <MESSAGE value="remove useless code in edit modal" />
+-    <option name="LAST_COMMIT_MESSAGE" value="remove useless code in edit modal" />
++    <MESSAGE value="fix tests in service" />
++    <MESSAGE value="fix edit call" />
++    <option name="LAST_COMMIT_MESSAGE" value="fix edit call" />
+   </component>
+ </project>
+\ No newline at end of file
