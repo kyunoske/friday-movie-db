@@ -19,14 +19,14 @@ class MovieServiceTest {
     void getAllMovies() {
         //Given
         when(movieRepo.findAll()).thenReturn(List.of(
-                new Movie("1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "", "action")));
+                new Movie("1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "action")));
 
         //When
         List<Movie> actual = movieService.getAllMovies();
 
         //Then
         List<Movie> expected = List.of(
-                new Movie("1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "", "action"));
+                new Movie("1", "Kid", "A good movie", "https://www.cinematerial.com/media/box-office/499549.jpg", "action"));
         verify(movieRepo).findAll();
         assertEquals(expected, actual);
     }
@@ -38,7 +38,6 @@ class MovieServiceTest {
                 "Kid",
                 "A good movie",
                 "https://www.cinematerial.com/media/box-office/499549.jpg",
-                "",
                 "action");
         when(movieRepo.save(movie)).thenReturn(movie);
 
