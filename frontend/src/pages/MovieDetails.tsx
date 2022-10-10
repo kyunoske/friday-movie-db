@@ -40,7 +40,7 @@ function MovieDetails(props: MovieDetailsProps) {
                 </div>
 
                 <div className="image-container">
-                    <img src={movie.image} style={{width: "290px"}}/>
+                    <img src={movie.image} alt={movie.title} style={{width: "290px"}}/>
                 </div>
                 <p>
                     <strong style={{color: "#0dcaf0"}}>Summary:</strong> {movie.description}

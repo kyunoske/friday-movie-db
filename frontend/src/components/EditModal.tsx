@@ -1,8 +1,6 @@
-import React, {FormEvent, useContext, useEffect, useState} from 'react';
+import React, {FormEvent, useState} from 'react';
 import {Movie} from "../model/Movie";
 import {useParams} from "react-router-dom";
-import useMovie from "../hooks/useMovie";
-import axios from "axios";
 
 type EditModalProps = {
     movie: Movie;
@@ -23,9 +21,7 @@ function EditModal(props: EditModalProps) {
     const [title, setTitle] = useState(findMovie ? findMovie.title : "")
     const [description, setDescription] = useState(findMovie ? findMovie.description : "")
     const [image, setImage] = useState(findMovie ? findMovie.image : "")
-    // const [bannerImage, setBannerImage] = useState("")
     const [category, setCategory] = useState(findMovie ? findMovie.category : "")
-    const [modal, setModal] = useState(true);
 
     if (id === undefined) {
         return (<>Movie not found with this id!</>)
@@ -43,14 +39,10 @@ function EditModal(props: EditModalProps) {
             title,
             description,
             image,
-            // bannerImage,
             category
         }
 
         setMovie(updatedMovie);
-
-        // axios.put(`/api/movie/${id}`, updatedMovie)
-        //     .then(() => getAllMovies())
 
         props.editMovie(id, updatedMovie);
         console.log(updatedMovie);
