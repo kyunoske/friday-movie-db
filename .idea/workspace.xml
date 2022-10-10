@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="91089480-0d37-4704-a1aa-7d96a5441a2f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/maven.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/maven.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="91089480-0d37-4704-a1aa-7d96a5441a2f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -88,7 +85,7 @@
       <recent name="com.example.backend.service" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MovieServiceTest">
+  <component name="RunManager" selected="Spring Boot.BackendApplication">
     <configuration name="BackendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
@@ -198,7 +195,7 @@
       <workItem from="1664529164474" duration="356000" />
       <workItem from="1664529528638" duration="1631000" />
       <workItem from="1664531546759" duration="138716000" />
-      <workItem from="1665149713846" duration="10609000" />
+      <workItem from="1665149713846" duration="11428000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <created>1664529412241</created>
@@ -452,7 +449,14 @@
       <option name="project" value="LOCAL" />
       <updated>1665158618491</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="add environment to maven.yml">
+      <created>1665167758265</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1665167758265</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -489,6 +493,7 @@
     <MESSAGE value="change job to jobs" />
     <MESSAGE value="remove //" />
     <MESSAGE value="add stuff" />
-    <option name="LAST_COMMIT_MESSAGE" value="add stuff" />
+    <MESSAGE value="add environment to maven.yml" />
+    <option name="LAST_COMMIT_MESSAGE" value="add environment to maven.yml" />
   </component>
 </project>

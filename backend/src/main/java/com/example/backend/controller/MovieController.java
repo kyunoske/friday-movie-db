@@ -44,6 +44,5 @@ public class MovieController {
     public Movie editMovie(@PathVariable String id, @RequestBody Movie movie) {
         return movieService.editMovie(id, movie);
     }
-    //
 
 }
