@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -31,8 +32,19 @@ public class MovieService {
         return movieRepo.save(newMovie);
     }
 
-    public Optional<Movie> getMovieById(String id) {
-        return movieRepo.findById(id);
+    public Movie getMovieById(String id) {
+//        Optional<Movie> movieOptional = movieRepo.findById(id);
+//
+//        if (movieOptional.isPresent()) {
+//            Movie foundMovie = movieOptional.get();
+//            return foundMovie;
+//        } else {
+//            throw new NoSuchElementException("No movie found with the id" + id);
+//        }
+
+        return movieRepo.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("No movie found with id: " + id));
+
     }
 
     public void deleteMovie(String id) {
