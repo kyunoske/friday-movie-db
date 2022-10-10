@@ -21,6 +21,5 @@ public class Movie {
     private String title;
     private String description;
     private String image;
-    private String bannerImage;
     private String category;
 }
